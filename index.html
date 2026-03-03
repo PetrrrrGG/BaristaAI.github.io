@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BaristaAI — Инструкция</title>
+    <title>BaristaAI — Твой ИИ-наставник</title>
     <style>
         :root {
             --tg-blue: #2AABEE;
             --coffee-dark: #3e2723;
             --coffee-medium: #5d4037;
             --coffee-light: #d7ccc8;
-            --bg-color: #f5f5f5;
+            --coffee-accent: #d0b096; /* Новый мягкий акцент */
+            --bg-color: #f9f7f6; /* Чуть более теплый фон */
             --text-main: #333;
             --card-bg: #ffffff;
         }
@@ -32,10 +33,11 @@
         header {
             text-align: center;
             padding: 40px 20px;
-            background: var(--coffee-dark);
+            background: linear-gradient(135deg, var(--coffee-dark) 0%, var(--coffee-medium) 100%);
             color: white;
             border-radius: 12px;
             margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(62, 39, 35, 0.2);
         }
 
         header h1 {
@@ -58,7 +60,17 @@
             padding: 30px;
             border-radius: 12px;
             margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .vision-box {
+            background: #fff8e1;
+            border-left: 5px solid #ffb300;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            font-size: 1.05rem;
         }
 
         h2 {
@@ -84,37 +96,63 @@
             margin-bottom: 8px;
         }
 
+        /* Улучшенная сетка кнопок */
         .tg-button-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 15px;
             margin: 20px 0;
         }
 
         .tg-button {
-            background-color: var(--bg-color);
-            border: 1px solid #ddd;
-            padding: 15px;
-            border-radius: 8px;
+            background-color: var(--card-bg);
+            border: 2px solid var(--coffee-light);
+            padding: 20px 15px;
+            border-radius: 12px;
             text-align: center;
-            font-weight: 600;
-            color: var(--coffee-dark);
+            color: var(--text-main);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            transition: transform 0.2s, border-color 0.2s;
+            position: relative;
+        }
+
+        .tg-button:hover {
+            transform: translateY(-2px);
+            border-color: var(--coffee-medium);
         }
 
         .tg-button span {
-            font-size: 2rem;
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+
+        .tg-button strong {
+            color: var(--coffee-dark);
+            font-size: 1.1rem;
+        }
+
+        /* Красивые бейджи для статуса */
+        .dev-badge {
+            background: #e0e0e0;
+            color: #616161;
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: bold;
+            margin-top: 5px;
         }
 
         .step-box {
-            background: var(--coffee-light);
+            background: var(--bg-color);
             padding: 15px;
             border-radius: 8px;
             margin-bottom: 10px;
-            border-left: 4px solid var(--coffee-dark);
+            border-left: 4px solid var(--coffee-medium);
         }
 
         details {
@@ -155,16 +193,6 @@
             border-radius: 0 0 8px 8px;
             background: white;
         }
-
-        .badge {
-            display: inline-block;
-            background: #ffecb3;
-            color: #ff8f00;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            margin-left: 10px;
-        }
     </style>
 </head>
 <body>
@@ -172,107 +200,95 @@
 <div class="container">
     <header>
         <h1>📖 BaristaAI</h1>
-        <p>Ваш дружелюбный наставник по варке эспрессо в Telegram.</p>
+        <p>Ваш цифровой блокнот и будущий ИИ-наставник по эспрессо</p>
     </header>
 
-    <div class="section">
-        <h2>1. Краткое введение</h2>
-        <p><strong>BaristaAI</strong> — это бот, который помогает фиксировать параметры проливов и органолептику, вести учёт партий зерна и оборудования. Он рассчитан на бариста и любителей кофе, которые хотят улучшать настройки без лишних технических сложностей.</p>
+    <div class="vision-box">
+        <strong>🚀 Наша глобальная цель:</strong> Мы создаем умную систему (ИИ), которая сможет анализировать зерно и автоматически подсказывать идеальные рецепты настройки эспрессо. <br><br>
+        Прямо сейчас бот работает как удобный дневник для фиксации ваших проливов и оценки вкуса. <strong>Каждый записанный вами шот помогает обучать нейросеть.</strong> Вместе мы собираем уникальную базу данных, которая в будущем сделает настройку кофе быстрой и безошибочной!
     </div>
 
     <div class="section">
-        <h2>2. Первые шаги</h2>
+        <h2>1. С чего начать?</h2>
+        <p>Сейчас главная задача — собирать данные о ваших удачных и неудачных проливах. Для этого:</p>
         <ol>
-            <li>Найдите бота в Telegram.</li>
-            <li>Нажмите <strong>«Запустить»</strong> или отправьте команду <code>/start</code>.</li>
-            <li>Бот поприветствует вас и покажет <strong>главное меню</strong>.</li>
+            <li>Найдите бота в Telegram и нажмите <strong>«Запустить»</strong> (или отправьте <code>/start</code>).</li>
+            <li>Бот создаст для вас демо-партию зерна, чтобы вы могли сразу протестировать систему.</li>
+            <li>Заварите кофе, попробуйте его и запишите результат через кнопку <strong>«☕ Новый пролив»</strong>.</li>
         </ol>
-        <p><em>Подсказка:</em> При первом запуске бот создаст демо-партию и оборудование, чтобы вы могли сразу попробовать записать свой первый пролив!</p>
     </div>
 
     <div class="section">
-        <h2>3. Главное меню и функции</h2>
-        <p>После команды <code>/start</code> вы попадаете в меню. Вот за что отвечает каждая кнопка:</p>
+        <h2>2. Главное меню бота</h2>
+        <p>Некоторые функции находятся в активной разработке, но самое важное уже работает!</p>
         
         <div class="tg-button-grid">
             <div class="tg-button">
                 <span>☕</span>
-                <div><strong>Новый пролив</strong><br><small>Запись параметров и оценки</small></div>
+                <strong>Новый пролив</strong>
+                <small>Запись параметров и оценки</small>
             </div>
             <div class="tg-button">
                 <span>🌱</span>
-                <div><strong>Зерно</strong><br><small>Учёт партий (SKU, обжарка)</small></div>
+                <strong>Зерно</strong>
+                <small>Учёт партий (SKU, обжарка)</small>
             </div>
             <div class="tg-button">
                 <span>⚙️</span>
-                <div><strong>Оборудование</strong><br><small>Кофемолки и машины</small></div>
+                <strong>Оборудование</strong>
+                <small>Кофемолки и машины</small>
+                <div class="dev-badge">Скоро</div>
             </div>
             <div class="tg-button">
                 <span>📜</span>
-                <div><strong>История рецептов</strong><br><small>Архив ваших проливов</small></div>
+                <strong>История рецептов</strong>
+                <small>Архив ваших проливов</small>
+                <div class="dev-badge">В разработке</div>
             </div>
         </div>
 
-        <h3>☕ Как записать новый пролив?</h3>
-        <p>Это пошаговый процесс. Выберите «Новый пролив» и следуйте инструкциям бота:</p>
-        <div class="step-box">1. Выберите партию зерна из списка.</div>
-        <div class="step-box">2. Выберите режим: <strong>📋 Внести пролив и оценку</strong> (остальные в разработке).</div>
-        <div class="step-box">3. Введите параметры: TDS воды, Температура, Закладка (г), Выход (г) и Время (сек).</div>
-        <div class="step-box">4. Оцените вкус от 1 до 5 (букет, баланс, кислотность, тело, послевкусие).</div>
-        <div class="step-box">5. Сохраните или отредактируйте результат.</div>
+        <h3>📝 Как правильно записать пролив?</h3>
+        <p>Это самый важный шаг для обучения нашей системы. Старайтесь оценивать вкус максимально честно:</p>
+        <div class="step-box"><strong>Шаг 1.</strong> Выберите партию зерна, с которой работаете.</div>
+        <div class="step-box"><strong>Шаг 2.</strong> Нажмите <strong>📋 Внести пролив и оценку</strong>.</div>
+        <div class="step-box"><strong>Шаг 3.</strong> Введите точные цифры: TDS воды, Температура, Закладка (г), Выход (г) и Время (сек).</div>
+        <div class="step-box"><strong>Шаг 4.</strong> Оцените вкус от 1 до 5 (букет, баланс, тело и т.д.). <em>Именно эти оценки научат ИИ понимать, что такое "вкусно"!</em></div>
+        <div class="step-box"><strong>Шаг 5.</strong> Проверьте сводку и сохраните результат.</div>
     </div>
 
     <div class="section">
-        <h2>4. Навигация</h2>
+        <h2>3. Навигация и Частые вопросы</h2>
+        <p>Интерфейс сделан пошаговым, чтобы ничего не потерялось:</p>
         <ul>
-            <li><strong>Главное меню</strong> — возврат в корень бота.</li>
-            <li><strong>◀️ Назад</strong> — вернуться на шаг назад или в подменю.</li>
-            <li><strong>❌ Отмена</strong> — выход из текущего сценария без сохранения.</li>
+            <li>Используйте кнопки <strong>◀️ Назад</strong> или <strong>❌ Отмена</strong> для перемещения по меню.</li>
+            <li>Если бот просит число (например, время), не пишите текст — отправьте просто цифру.</li>
         </ul>
-        <p><em>Совет:</em> Старайтесь не прерывать сценарии ввода другими командами. Сначала завершите или отмените текущее действие.</p>
-    </div>
-
-    <div class="section">
-        <h2>5. Частые вопросы (FAQ)</h2>
+        <br>
         
         <details>
-            <summary>Пишет «Нет доступных партий» при новом проливе. Что делать?</summary>
+            <summary>Пишет «Нет доступных партий» при новом проливе.</summary>
             <div class="faq-content">
-                Сначала добавьте хотя бы одну партию в разделе <strong>«🌱 Зерно»</strong> → <strong>«➕ Добавить партию»</strong>.
+                Сначала добавьте своё зерно в разделе <strong>«🌱 Зерно»</strong> → <strong>«➕ Добавить партию»</strong>.
             </div>
         </details>
 
         <details>
-            <summary>Бот просит число, а я ввёл текст. Что будет?</summary>
+            <summary>Я ошибся с цифрой при вводе.</summary>
             <div class="faq-content">
-                Бот попросит ввести значение снова. Просто отправьте корректное число в следующем сообщении.
+                Бот знает физические лимиты эспрессо. Если вы введете 500 грамм выхода, он попросит исправить ошибку. Просто напишите правильное число следующим сообщением.
             </div>
         </details>
 
         <details>
-            <summary>Я ошибся с цифрой (например, ввёл огромный выход).</summary>
+            <summary>Когда заработают функции «в разработке»?</summary>
             <div class="faq-content">
-                Бот сообщит допустимый диапазон и попросит ввести заново. Просто напишите правильное число.
-            </div>
-        </details>
-
-        <details>
-            <summary>Кнопка пишет «в разработке» <span class="badge">Временно</span></summary>
-            <div class="faq-content">
-                Значит, функция пока отключена. Используйте рабочие разделы: <strong>«Новый пролив»</strong> и <strong>«Зерно»</strong>.
-            </div>
-        </details>
-
-        <details>
-            <summary>Можно ли изменить или удалить рецепт?</summary>
-            <div class="faq-content">
-                Сейчас доступен только просмотр в «Истории рецептов». Редактирование и удаление пока не предусмотрены.
+                Мы активно пишем код! Как только соберется базовая статистика по зерну, мы откроем Историю рецептов и добавим первые AI-подсказки по настройке помола.
             </div>
         </details>
     </div>
 
-    <div style="text-align: center; color: var(--coffee-medium); margin-top: 40px;">
-        <p>Удачных проливов! ☕</p>
+    <div style="text-align: center; color: var(--coffee-medium); margin-top: 40px; margin-bottom: 20px;">
+        <p>Спасибо, что помогаете создавать будущее кофеварки! Удачных проливов! ☕</p>
     </div>
 </div>
 
