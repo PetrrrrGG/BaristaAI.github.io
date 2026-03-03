@@ -1,292 +1,280 @@
 <!DOCTYPE html>
-<html lang="ru"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>BaristaAI - Цифровой шеф-бариста</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: '#FF9500', // Vibrant Orange
-                        'primary-hover': '#E08500',
-                        surface: '#FFFFFF',
-                        background: '#F5F5F7',
-                        'text-main': '#1D1D1F', // Dark Grey
-                        'text-secondary': '#86868B', // Light Grey
-                    },
-                    borderRadius: {
-                        '2xl': '16px',
-                        '3xl': '24px',
-                        'pill': '9999px',
-                    },
-                    boxShadow: {
-                        'soft': '0 4px 24px rgba(0,0,0,0.04)',
-                        'card': '0 2px 12px rgba(0,0,0,0.06)',
-                    }
-                }
-            }
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BaristaAI — Инструкция</title>
+    <style>
+        :root {
+            --tg-blue: #2AABEE;
+            --coffee-dark: #3e2723;
+            --coffee-medium: #5d4037;
+            --coffee-light: #d7ccc8;
+            --bg-color: #f5f5f5;
+            --text-main: #333;
+            --card-bg: #ffffff;
         }
-    </script>
-<style>
-        body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--coffee-dark);
+            color: white;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--coffee-dark);
+            border-bottom: 2px solid var(--coffee-light);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        h3 {
+            color: var(--coffee-medium);
+            margin: 20px 0 10px;
+            font-size: 1.3rem;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .tg-button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .tg-button {
+            background-color: var(--bg-color);
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            color: var(--coffee-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tg-button span {
+            font-size: 2rem;
+        }
+
+        .step-box {
+            background: var(--coffee-light);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--coffee-dark);
+        }
+
+        details {
+            background: var(--bg-color);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        summary {
+            font-weight: bold;
+            padding: 15px;
+            cursor: pointer;
+            background: var(--coffee-light);
+            color: var(--coffee-dark);
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        summary::after {
+            content: '▼';
+            font-size: 0.8em;
+        }
+
+        details[open] summary::after {
+            content: '▲';
+        }
+
+        .faq-content {
+            padding: 15px;
+            border: 1px solid var(--coffee-light);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            background: white;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #ffecb3;
+            color: #ff8f00;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-left: 10px;
         }
     </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-  </head>
-<body class="bg-surface text-text-main font-sans selection:bg-orange-100 selection:text-orange-900">
-<header class="fixed top-0 w-full z-50 glass-nav transition-all duration-300">
-<div class="max-w-6xl mx-auto px-6 h-[72px] flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="text-xl font-bold tracking-tight text-black">BaristaAI</span>
-</div>
-<nav class="hidden md:flex gap-8 text-sm font-medium text-text-secondary">
-<a class="hover:text-primary transition-colors" href="#features">Возможности</a>
-<a class="hover:text-primary transition-colors" href="#savings">Экономия</a>
-<a class="hover:text-primary transition-colors" href="#pricing">Тарифы</a>
-<a class="hover:text-primary transition-colors" href="#contact">Контакты</a>
-</nav>
-</div>
-</header>
-<main>
-<section class="pt-36 pb-20 px-6 max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-16 overflow-hidden">
-<div class="flex-1 space-y-8 text-center md:text-left z-10">
-<h1 class="text-4xl md:text-6xl font-bold leading-[1.1] tracking-tight text-black">
-                    Цифровой шеф-бариста в вашем кармане
-                </h1>
-<p class="text-lg text-text-secondary leading-relaxed max-w-lg mx-auto md:mx-0">
-                    Сократите списания зерна на 30% и настройте идеальный эспрессо с помощью ИИ. Работает прямо в Telegram.
-                </p>
-<div class="flex justify-center md:justify-start">
-<span class="text-text-secondary font-medium px-4 py-2 bg-gray-100 rounded-lg text-sm tracking-wide">
-                        Скоро релиз
-                    </span>
-</div>
-</div>
-<div class="flex-1 relative w-full flex justify-center items-center">
-<div class="absolute inset-0 bg-gradient-to-tr from-orange-100/50 to-transparent rounded-full blur-3xl opacity-60 transform scale-75"></div>
-<div class="relative w-[280px] h-[580px] bg-black rounded-[50px] border-[8px] border-[#1f1f1f] shadow-2xl overflow-hidden ring-1 ring-gray-200/50 transform rotate-[-5deg] hover:rotate-0 transition-transform duration-700 ease-out z-20">
-<div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-7 bg-black rounded-b-2xl z-30"></div>
-<div class="w-full h-full bg-background flex flex-col relative overflow-hidden">
-<div class="pt-12 px-5 pb-4 bg-white border-b border-gray-100 flex justify-between items-end">
-<div class="h-6 w-28 bg-gray-900 rounded-md"></div>
-<div class="h-8 w-8 bg-gray-100 rounded-full"></div>
-</div>
-<div class="p-4 space-y-4">
-<div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 space-y-3">
-<div class="flex justify-between">
-<div class="h-4 w-24 bg-gray-200 rounded"></div>
-<div class="h-4 w-12 bg-orange-100 rounded text-xs flex items-center justify-center text-orange-600 font-bold">8.5</div>
-</div>
-<div class="flex items-end gap-1 h-20 pt-4">
-<div class="w-1/6 bg-orange-200 h-[40%] rounded-t-sm"></div>
-<div class="w-1/6 bg-orange-300 h-[60%] rounded-t-sm"></div>
-<div class="w-1/6 bg-primary h-[80%] rounded-t-sm"></div>
-<div class="w-1/6 bg-orange-300 h-[50%] rounded-t-sm"></div>
-<div class="w-1/6 bg-orange-200 h-[30%] rounded-t-sm"></div>
-<div class="w-1/6 bg-orange-100 h-[20%] rounded-t-sm"></div>
-</div>
-</div>
-<div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
-<div class="flex items-center gap-3 mb-3">
-<div class="w-8 h-8 rounded-full bg-orange-50 text-primary flex items-center justify-center">
-<span class="material-symbols-outlined text-sm">smart_toy</span>
-</div>
-<div class="h-3 w-32 bg-gray-200 rounded"></div>
-</div>
-<div class="space-y-2">
-<div class="h-2 w-full bg-gray-100 rounded"></div>
-<div class="h-2 w-4/5 bg-gray-100 rounded"></div>
-</div>
-</div>
-<div class="mt-4 h-12 bg-black rounded-xl w-full flex items-center justify-center">
-<div class="h-3 w-24 bg-gray-700 rounded"></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="py-20 px-6 bg-white" id="features">
-<div class="max-w-4xl mx-auto">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-<div class="p-8 rounded-2xl border border-gray-100 bg-white shadow-card hover:shadow-soft transition-shadow">
-<div class="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6 text-gray-900">
-<span class="material-symbols-outlined text-[28px]">delete</span>
-</div>
-<h3 class="text-xl font-medium text-black mb-3">Ежедневные убытки</h3>
-<p class="text-text-secondary leading-relaxed">
-                            до 20 000 ₽/мес на настройку помола из-за ошибок бариста и списаний.
-                        </p>
-</div>
-<div class="p-8 rounded-2xl border border-gray-100 bg-white shadow-card hover:shadow-soft transition-shadow">
-<div class="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center mb-6 text-primary">
-<span class="material-symbols-outlined text-[28px]">psychology</span>
-</div>
-<h3 class="text-xl font-medium text-black mb-3">Умная калибровка</h3>
-<p class="text-text-secondary leading-relaxed">
-                            Алгоритм говорит бариста, как изменить помол. Точные инструкции в граммах.
-                        </p>
-</div>
-<div class="md:col-span-2 p-8 rounded-2xl border border-gray-100 bg-white shadow-card hover:shadow-soft transition-shadow flex flex-col md:flex-row md:items-center gap-6">
-<div class="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-gray-900 shrink-0">
-<span class="material-symbols-outlined text-[28px]">rocket_launch</span>
-</div>
-<div>
-<h3 class="text-xl font-medium text-black mb-2">Внедрение за 1 минуту</h3>
-<p class="text-text-secondary">Без установки приложений. Просто добавьте бота в Telegram.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="py-24 px-6 bg-background/50 border-y border-gray-100" id="savings">
-<div class="max-w-5xl mx-auto">
-<div class="flex flex-col md:flex-row gap-10 md:gap-6">
-<div class="flex-1 flex flex-col items-center text-center">
-<div class="w-16 h-16 bg-white border border-gray-200 rounded-2xl flex items-center justify-center text-primary mb-6 shadow-sm">
-<span class="material-symbols-outlined text-[32px]">auto_awesome</span>
-</div>
-<p class="text-text-secondary text-base leading-relaxed">
-                            ИИ анализирует пролив и дает рекомендацию.
-                        </p>
-</div>
-<div class="hidden md:flex items-center justify-center text-gray-300">
-<span class="material-symbols-outlined">arrow_forward</span>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>📖 BaristaAI</h1>
+        <p>Ваш дружелюбный наставник по варке эспрессо в Telegram.</p>
+    </header>
+
+    <div class="section">
+        <h2>1. Краткое введение</h2>
+        <p><strong>BaristaAI</strong> — это бот, который помогает фиксировать параметры проливов и органолептику, вести учёт партий зерна и оборудования. Он рассчитан на бариста и любителей кофе, которые хотят улучшать настройки без лишних технических сложностей.</p>
+    </div>
+
+    <div class="section">
+        <h2>2. Первые шаги</h2>
+        <ol>
+            <li>Найдите бота в Telegram.</li>
+            <li>Нажмите <strong>«Запустить»</strong> или отправьте команду <code>/start</code>.</li>
+            <li>Бот поприветствует вас и покажет <strong>главное меню</strong>.</li>
+        </ol>
+        <p><em>Подсказка:</em> При первом запуске бот создаст демо-партию и оборудование, чтобы вы могли сразу попробовать записать свой первый пролив!</p>
+    </div>
+
+    <div class="section">
+        <h2>3. Главное меню и функции</h2>
+        <p>После команды <code>/start</code> вы попадаете в меню. Вот за что отвечает каждая кнопка:</p>
+        
+        <div class="tg-button-grid">
+            <div class="tg-button">
+                <span>☕</span>
+                <div><strong>Новый пролив</strong><br><small>Запись параметров и оценки</small></div>
+            </div>
+            <div class="tg-button">
+                <span>🌱</span>
+                <div><strong>Зерно</strong><br><small>Учёт партий (SKU, обжарка)</small></div>
+            </div>
+            <div class="tg-button">
+                <span>⚙️</span>
+                <div><strong>Оборудование</strong><br><small>Кофемолки и машины</small></div>
+            </div>
+            <div class="tg-button">
+                <span>📜</span>
+                <div><strong>История рецептов</strong><br><small>Архив ваших проливов</small></div>
+            </div>
+        </div>
+
+        <h3>☕ Как записать новый пролив?</h3>
+        <p>Это пошаговый процесс. Выберите «Новый пролив» и следуйте инструкциям бота:</p>
+        <div class="step-box">1. Выберите партию зерна из списка.</div>
+        <div class="step-box">2. Выберите режим: <strong>📋 Внести пролив и оценку</strong> (остальные в разработке).</div>
+        <div class="step-box">3. Введите параметры: TDS воды, Температура, Закладка (г), Выход (г) и Время (сек).</div>
+        <div class="step-box">4. Оцените вкус от 1 до 5 (букет, баланс, кислотность, тело, послевкусие).</div>
+        <div class="step-box">5. Сохраните или отредактируйте результат.</div>
+    </div>
+
+    <div class="section">
+        <h2>4. Навигация</h2>
+        <ul>
+            <li><strong>Главное меню</strong> — возврат в корень бота.</li>
+            <li><strong>◀️ Назад</strong> — вернуться на шаг назад или в подменю.</li>
+            <li><strong>❌ Отмена</strong> — выход из текущего сценария без сохранения.</li>
+        </ul>
+        <p><em>Совет:</em> Старайтесь не прерывать сценарии ввода другими командами. Сначала завершите или отмените текущее действие.</p>
+    </div>
+
+    <div class="section">
+        <h2>5. Частые вопросы (FAQ)</h2>
+        
+        <details>
+            <summary>Пишет «Нет доступных партий» при новом проливе. Что делать?</summary>
+            <div class="faq-content">
+                Сначала добавьте хотя бы одну партию в разделе <strong>«🌱 Зерно»</strong> → <strong>«➕ Добавить партию»</strong>.
+            </div>
+        </details>
+
+        <details>
+            <summary>Бот просит число, а я ввёл текст. Что будет?</summary>
+            <div class="faq-content">
+                Бот попросит ввести значение снова. Просто отправьте корректное число в следующем сообщении.
+            </div>
+        </details>
+
+        <details>
+            <summary>Я ошибся с цифрой (например, ввёл огромный выход).</summary>
+            <div class="faq-content">
+                Бот сообщит допустимый диапазон и попросит ввести заново. Просто напишите правильное число.
+            </div>
+        </details>
+
+        <details>
+            <summary>Кнопка пишет «в разработке» <span class="badge">Временно</span></summary>
+            <div class="faq-content">
+                Значит, функция пока отключена. Используйте рабочие разделы: <strong>«Новый пролив»</strong> и <strong>«Зерно»</strong>.
+            </div>
+        </details>
+
+        <details>
+            <summary>Можно ли изменить или удалить рецепт?</summary>
+            <div class="faq-content">
+                Сейчас доступен только просмотр в «Истории рецептов». Редактирование и удаление пока не предусмотрены.
+            </div>
+        </details>
+    </div>
+
+    <div style="text-align: center; color: var(--coffee-medium); margin-top: 40px;">
+        <p>Удачных проливов! ☕</p>
+    </div>
 </div>
 
-        <div class="flex-1 flex flex-col items-center text-center">
-<div class="w-16 h-16 bg-white border border-gray-200 rounded-2xl flex items-center justify-center text-black mb-6 shadow-sm">
-<span class="material-symbols-outlined text-[32px]">coffee_maker</span>
-</div>
-<p class="text-text-secondary text-base leading-relaxed">
-                            Бариста варит эспрессо и вводит данные.
-                        </p>
-</div>
-<div class="hidden md:flex items-center justify-center text-gray-300">
-<span class="material-symbols-outlined">arrow_forward</span>
-</div>
-<div class="flex-1 flex flex-col items-center text-center">
-<div class="w-16 h-16 bg-white border border-gray-200 rounded-2xl flex items-center justify-center text-black mb-6 shadow-sm">
-<span class="material-symbols-outlined text-[32px]">savings</span>
-</div>
-<p class="text-text-secondary text-base leading-relaxed">
-                            Идеальный вкус и экономия ресурсов.
-                        </p>
-</div>
-</div>
-</div>
-</section>
-<section class="py-24 px-6 bg-white" id="pricing">
-<div class="max-w-4xl mx-auto">
-<h2 class="text-3xl font-bold text-center text-black mb-12">Тарифы</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="p-8 rounded-2xl border border-gray-200 bg-white flex flex-col hover:border-gray-300 transition-colors h-full">
-<div class="flex-1">
-<h3 class="text-2xl font-medium text-black mb-2">Точка</h3>
-<p class="text-sm text-text-secondary mb-8">Для одной кофейни</p>
-<div class="flex items-baseline gap-1 mb-8">
-<span class="text-4xl font-bold text-black">2500 ₽</span>
-<span class="text-text-secondary">/мес</span>
-</div>
-<div class="space-y-4 mb-4">
-<div class="flex gap-3 text-sm text-text-main">
-<span class="material-symbols-outlined text-green-500 text-lg">check_circle</span>
-<span>Безлимитные настройки рецептов</span>
-</div>
-<div class="flex gap-3 text-sm text-text-main">
-<span class="material-symbols-outlined text-green-500 text-lg">check_circle</span>
-<span>История калибровок</span>
-</div>
-</div>
-</div>
-</div>
-<div class="p-8 rounded-2xl border border-primary bg-white flex flex-col shadow-lg shadow-orange-500/5 relative overflow-hidden h-full">
-<div class="absolute top-0 right-0 bg-orange-50 text-primary text-[10px] font-bold px-3 py-1.5 rounded-bl-xl uppercase tracking-wider">
-                            Выгодно
-                        </div>
-<div class="flex-1">
-<h3 class="text-2xl font-medium text-black mb-2">Сеть</h3>
-<p class="text-sm text-text-secondary mb-8">Единый стандарт качества</p>
-<div class="flex items-baseline gap-1 mb-8">
-<span class="text-4xl font-bold text-black">2000 ₽</span>
-<span class="text-text-secondary">/мес</span>
-</div>
-<div class="space-y-4 mb-4">
-<div class="flex gap-3 text-sm text-text-main">
-<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-<span>Все функции тарифа "Точка"</span>
-</div>
-<div class="flex gap-3 text-sm text-text-main">
-<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-<span>Аналитика по всем точкам</span>
-</div>
-<div class="flex gap-3 text-sm text-text-main">
-<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
-<span>Личный менеджер</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="py-24 px-6 bg-white border-t border-gray-100">
-<div class="max-w-4xl mx-auto">
-<div class="bg-gray-50 rounded-3xl p-10 md:p-12 border border-gray-100 flex flex-col md:flex-row items-center justify-between gap-10">
-<div class="text-center md:text-left">
-<h2 class="text-2xl md:text-3xl font-medium text-black leading-tight max-w-sm">White Label Партнерство для Обжарщиков</h2>
-</div>
-<div class="bg-white rounded-2xl p-6 shadow-card border border-gray-100 w-full md:w-auto min-w-[320px] space-y-4">
-<div class="flex items-center gap-3">
-<div class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></div>
-<span class="text-lg text-text-main font-normal">Setup Fee: 300 000 ₽</span>
-</div>
-<div class="w-full h-px bg-gray-50"></div>
-<div class="flex items-center gap-3">
-<div class="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></div>
-<span class="text-lg text-text-main font-normal">+ % с активных пользователей</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-</main>
-<footer class="py-12 px-6 border-t border-gray-100 bg-background" id="contact">
-<div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-<div class="text-sm font-medium text-text-secondary">
-                © 2025 BaristaAI
-            </div>
-<div class="flex gap-8">
-<a class="text-text-secondary hover:text-primary transition-colors flex items-center gap-2 text-sm font-medium" href="https://t.me/hlam_p">
-<span class="material-symbols-outlined text-lg">send</span> Telegram
-                </a>
-</div>
-</div>
-</footer>
-</body></html>
+</body>
+</html>
